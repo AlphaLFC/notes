@@ -84,12 +84,17 @@ Stride of 2.
    clip to left and right for a small time period, and feed to the
    network and average the output.
 
+1. What is dropout?
+
+   Hinton described this method in his
+   [paper](http://arxiv.org/pdf/1207.0580.pdf). This method randomly
+   "dropout" some inputs to control overfitting.
+
 1. Is the backward recurrence important?
 1. With a single direction, can we pipeline recording with recognition?
 1. Why this specific topology (5 layers and first 3 are non-recurrent)?
 1. Why softmax in computing the probability distribution over alphabet?
 1. What is Nesterov's accelerated gradient method?
-1. What is dropout?
 1. Does the same approach works with Chinese?
 1. How is the beam search algorithm works to combine DNN with the langauge model?
 
