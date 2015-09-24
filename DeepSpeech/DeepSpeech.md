@@ -65,3 +65,17 @@ Stride of 2.
 * Play noice through headphones of recorders.
 
 
+## Questions and Read More
+
+1. Is the backward recurrence important?
+1. With a single direction, can we pipeline recording with recognition?
+1. Why this specific topology (5 layers and first 3 are non-recurrent)?
+1. Why softmax in computing the probability distribution over alphabet?
+1. What is CTC loss?
+1. What is Nesterov's accelerated gradient method?
+1. What is dropout?
+1. What is Jittering?
+1. Does the same approach works with Chinese?
+1. How is the beam search algorithm works to combine DNN with the langauge model?
+
+
