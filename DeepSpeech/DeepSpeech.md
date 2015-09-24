@@ -1,5 +1,10 @@
 # Deep Speach
 
+This Markdown document contains LaTeX math. Please install this Chrome
+browser
+[plugin](https://chrome.google.com/webstore/detail/markdown-reader/gpoigdifkoadgajcincpilkjmejcaanc?hl=en)
+to read it.
+
 
 ## Goals
 
