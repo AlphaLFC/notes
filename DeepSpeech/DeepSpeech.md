@@ -76,7 +76,12 @@ Stride of 2.
 
    CTC loss is the error rate defined in Section 2. of the
    [paper](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) "Connectionist
-   Temporal Classification".
+   Temporal Classification" as
+
+   $$L(h,S) = \frac{1}{|S|} \sum_{(x,z)\in S} \frac{E(h(x),z)}{|z|}$$
+
+   where $S$ is the test set, $(x,z)$ is a pair of input and label
+   sequences in $S$, and $E(.,.)$ denotes the editing distance.
 
 1. ~~~What is Jittering?~~~
 
