@@ -70,8 +70,14 @@ Stride of 2.
 1. ~~What is CTC loss?~~
 
    CTC loss is the error rate defined in Section 2. of the
-   (paper)[ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf] "Connectionist
+   [paper](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) "Connectionist
    Temporal Classification".
+
+1. What is Jittering?
+
+   Jittering means that during network evaluation, we shift the audio
+   clip to left and right for a small time period, and feed to the
+   network and average the output.
 
 1. Is the backward recurrence important?
 1. With a single direction, can we pipeline recording with recognition?
@@ -79,7 +85,6 @@ Stride of 2.
 1. Why softmax in computing the probability distribution over alphabet?
 1. What is Nesterov's accelerated gradient method?
 1. What is dropout?
-1. What is Jittering?
 1. Does the same approach works with Chinese?
 1. How is the beam search algorithm works to combine DNN with the langauge model?
 
