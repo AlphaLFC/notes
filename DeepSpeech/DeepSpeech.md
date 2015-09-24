@@ -40,7 +40,7 @@
 
 ### Data Parallelism
 
-* The t-th frame of many utterances is process as a batch: `W * H_t = W * [h_1,t, h_2,t, ...]`
+* The t-th frame of many utterances is process as a batch: $W * H_t = W * [h_1, h_2, ...]$
 * Aggregate gradients from multiple GPUs
 
 ### Model Parallelism
@@ -67,17 +67,16 @@ Stride of 2.
 
 ## Questions and Read More
 
-1. Is the backward recurrence important?
-1. With a single direction, can we pipeline recording with recognition?
-1. Why this specific topology (5 layers and first 3 are non-recurrent)?
-1. Why softmax in computing the probability distribution over alphabet?
-
 1. ~~What is CTC loss?~~
 
    CTC loss is the error rate defined in Section 2. of the
    (paper)[ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf] "Connectionist
    Temporal Classification".
 
+1. Is the backward recurrence important?
+1. With a single direction, can we pipeline recording with recognition?
+1. Why this specific topology (5 layers and first 3 are non-recurrent)?
+1. Why softmax in computing the probability distribution over alphabet?
 1. What is Nesterov's accelerated gradient method?
 1. What is dropout?
 1. What is Jittering?
