@@ -94,11 +94,20 @@ Stride of 2.
    [paper](http://arxiv.org/pdf/1207.0580.pdf). This method randomly
    "dropout" some inputs to control overfitting.
 
+1. What is Nesterov's accelerated gradient method?
+
+   It is described in this
+   [paper](http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf). It
+   states that Nesterov's accelerated gradient, a first-order SGD
+   method, can achieve the performance of the Hessien-Free, a
+   second-order method, when we use well-designed initialize and a
+   particular type of slowly increasing schedule for the momentum
+   parameter.
+
 1. Is the backward recurrence important?
 1. With a single direction, can we pipeline recording with recognition?
 1. Why this specific topology (5 layers and first 3 are non-recurrent)?
 1. Why softmax in computing the probability distribution over alphabet?
-1. What is Nesterov's accelerated gradient method?
 1. Does the same approach works with Chinese?
 1. How is the beam search algorithm works to combine DNN with the langauge model?
 
