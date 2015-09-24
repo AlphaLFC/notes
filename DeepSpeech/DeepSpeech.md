@@ -9,7 +9,7 @@ to read it.
 ## Goals
 
 * Simple -- deep learning end-to-end
-* Fast -- multiple CPUs and network fits GPUs
+* Fast -- multiple CPUs and networks fit GPUs
 * Noise-tolerant -- synthetic training data
 
 ## The Network
@@ -37,9 +37,8 @@ to read it.
 
 ### Language Model
 
-* KenLM toolkit for language model training
-* Q(c) = log P(c|x) + a log P(c|lm) + b word_count(c)
-* optimized beam search algorithm
+* KenLM toolkit for language model training.
+* Optimizing $Q(c) = \log P(c|x) + α \log P(c|lm) + β \text{word_count}(c)$ using a beam search algorithm.
 
 ## Optimization
 
@@ -72,7 +71,7 @@ Stride of 2.
 
 ## Questions and Read More
 
-1. ~~What is CTC loss?~~
+1. What is CTC loss?
 
    CTC loss is the error rate defined in Section 2. of the
    [paper](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) "Connectionist
@@ -83,13 +82,13 @@ Stride of 2.
    where $S$ is the test set, $(x,z)$ is a pair of input and label
    sequences in $S$, and $E(.,.)$ denotes the editing distance.
 
-1. ~~~What is Jittering?~~~
+1. What is Jittering?
 
    Jittering means that during network evaluation, we shift the audio
    clip to left and right for a small time period, and feed to the
    network and average the output.
 
-1. ~~~What is dropout?~~~
+1. What is dropout?
 
    Hinton described this method in his
    [paper](http://arxiv.org/pdf/1207.0580.pdf). This method randomly
