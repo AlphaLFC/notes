@@ -78,13 +78,13 @@ Stride of 2.
    [paper](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) "Connectionist
    Temporal Classification".
 
-1. What is Jittering?
+1. ~~~What is Jittering?~~~
 
    Jittering means that during network evaluation, we shift the audio
    clip to left and right for a small time period, and feed to the
    network and average the output.
 
-1. What is dropout?
+1. ~~~What is dropout?~~~
 
    Hinton described this method in his
    [paper](http://arxiv.org/pdf/1207.0580.pdf). This method randomly
