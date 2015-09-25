@@ -20,9 +20,11 @@ to read it.
 
 ### Efficiency
 
-* No LSTM gates, but all rectified-linear (ReLu) gates -- few BLAS operations on GPU.
+* No LSTM gates, but all rectified-linear (ReLu) gates -- few BLAS
+  operations on GPU.
 * A single recurrent layer.
-* The recurrent layer divided into forward and backward parts -- forward and backward pases can be done on two GPUs simultaneiously.
+* The recurrent layer divided into forward and backward parts --
+  forward and backward pases can be done on two GPUs simultaneiously.
 
 ### Training
 
@@ -60,9 +62,12 @@ Stride of 2.
 
 ### Synthesis by Superpoisiton
 
-* Many noise sources from public videos. (DNN can learn to ignore a single noise source.)
+* Many noise sources from public videos. (DNN can learn to ignore a
+  single noise source.)
 * Superposition capture audio with these many noise sources.
-* Reject synthetic audio clip if the average power in each frequency differs significantly from the average pwoer observed in real noisy recordings.
+* Reject synthetic audio clip if the average power in each frequency
+  differs significantly from the average pwoer observed in real noisy
+  recordings.
 
 ### Capturing Lombard Effect
 
@@ -104,11 +109,22 @@ Stride of 2.
    particular type of slowly increasing schedule for the momentum
    parameter.
 
-1. Is the backward recurrence important?
-1. With a single direction, can we pipeline recording with recognition?
+1. Is the backward recurrence important? With a single direction, can
+   we pipeline recording with recognition?
+
+   People are experimenting ideas that supports both bi-directional
+   recurrence and online recognition.
+
+   > I need to read the CTC paper to understand more about this.
+
 1. Why this specific topology (5 layers and first 3 are non-recurrent)?
-1. Why softmax in computing the probability distribution over alphabet?
-1. Does the same approach works with Chinese?
+
+   Researchers are playing with more other toplogies.
+
 1. How is the beam search algorithm works to combine DNN with the langauge model?
 
+   > Need to read the cited paper.
+
+1. Why softmax in computing the probability distribution over alphabet?
+1. Does the same approach works with Chinese?
 
