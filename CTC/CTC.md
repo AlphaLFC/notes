@@ -175,7 +175,7 @@ map $\boldsymbol\pi$ to $\mathbf{l}'$, which is constructed by
 inserting blanks before, after, and into $\mathbf{l}$.  For the above
 example, we have
 
-$$ \mathbf{l}' = \{ \_, b, \_, e, \_, e, \_ \}$$
+$$ \mathbf{l}' = \{ \_, b, \_, e, \_, e, \_ \} $$
 
 and the warping could work as:
 
