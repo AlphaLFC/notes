@@ -262,26 +262,30 @@ $\pi_s$.  Roughly, it is reasonable to map $\pi_t$ to
 2. the element next to $l'_{s(t-1)}$, denoted by $l'_{s(t-1)+1}$, or
 3. $l'_{s(t-1)+2}$, if $l'_{s(t-1)+1}=\text{``\_"}$
 
-Among these, 3. is reasonable in case that we want to skip that blank
-$l'_{s(t-1)+1}=\text{``\_"}$.  An example is that when we want to map
-$\boldsymbol\pi=\{h,h,h,h,e,e,e\}$ to $\mathbf{l}'=\{\_,h,\_,e,\_\}$
--- there should be no $\pi_t$, for any $t$, being mapped to any blank
-in $\mathbf{l}'$.
+Among these, case 3 is reasonable in case that we want to skip that
+blank $l'_{s(t-1)+1}=\text{``\_"}$.  An example is that when we want
+to map $\boldsymbol\pi=\{h,h,h,h,e,e,e\}$ to
+$\mathbf{l}'=\{\_,h,\_,e,\_\}$ -- it is not mandatory to map any
+$\pi_t$ to any blank in $\mathbf{l}'$, in order to recognize the word
+"he".
 
     hhhheee
     \|//|//
      |  /
     _h_e_
 
-But 3. is not reasonable when $l'_{s(t-1)+2}=l'_{s(t-1)}$.  In this
+But case 3 is not reasonable when $l'_{s(t-1)+2}=l'_{s(t-1)}$.  In this
 case, we should not skip that blank.  For example, to recognize the
-word ``bee'', we have $\mathbf{l}'=\{\_,b,\_,e,\_,e,\_\}$.  And it is
-reasonable to map successive ``e''s in $\boldsymbol\pi$ to the two
-``e''s in $\boldsymbol\pi$ and skip the ``\_'' in between:
+word "bee", we have $\mathbf{l}'=\{\_,b,\_,e,\_,e,\_\}$.  In these
+case, if we skip over the blank between the two *e*s in $\mathbf{l}'$,
+we would misunderstand the double-e as a singel e.  In the example
+below, even if frame ($\mathbf{y}_5$) *sounds* more like *e* than
+blank, we want to map it to $l'_5=\text{``\_''}$, so to recognize the
+word "bee".
 
     bbbeeeeee
-    \|||/|///
-     |/| |
+    \|||||///
+     |/|||
     _b_e_e_
 
 
