@@ -296,3 +296,19 @@ $$ \alpha(t,s) = \begin{cases}
 y_{t,l'_s} \sum_{i=s-1}^s \alpha(t-1,i) & \text{if $l'_s$=\_ or $l'_s=l'_{s-2}$} \\
 y_{t,l'_s} \sum_{i=s-2}^s \alpha(t-1,i) & \text{otherwise}
 \end{cases} $$
+
+
+This general rule shows that, to compute $\alpha(t,s)$, we need
+$\alpha(t-1,s)$, $\alpha(t-1,s-1)$ and $\alpha(t-1,s-2)$.  Some of
+these values are obviously zero.  The following figure from Alex
+Graves' Ph.D. thesis helps us understand in particular which are
+zeros.
+
+![The search space of the forward-backward algorithm](forward-backward-algorithm.pdf)
+
+## Quiz
+
+1. Please illustrate the search space of the forward-backward
+   algorithm given $\mathbf{l}=\{b,e,e\}$, like Alex Graves
+   illustrates the case of $\mathbf{l}=\{c,a,t\}$ with Figure 7.2 in
+   his Ph.D. thesis.
