@@ -202,10 +202,93 @@ designing the algorithm that computes the map from $\boldsymbol\pi$ to
 $\mathbf{l}'$.
 
 
+
 ## The Forward-Backward Algorithm
 
+Here we derive the dynamic programming algorithm for computing
+$P(\mathbf{l'} | \mathbf{x})$, which, is notablly equivalent to
+$P(\mathbf{l} | \mathbf{x})$, because $\mathbf{l}'$ is constructed to
+be unique for the given $\mathbf{l}$.
 
-Let $s$ indexing $\mathbf{l}'$, the forward variable $\alpha(s,t)$ is
-defined as
+The above time warping example shows that $\pi_T$ could be mapped to
+either $l'_{|\mathbf{l}'|}$, the padding blank of $\mathbf{l}'$, or
+$l'_{|\mathbf{l}'|-1}$, which, according to the construction rule of
+$\mathbf{l}'$, is the last element of $\mathbf{l}$.  So we have:
 
-$$ \alpha(t,s) = P(\boldsymbol\pi_{1:t}, \mathbf{l}'_{1:s} | \mathbf{x}) $$
+
+$$ P(\mathbf{l}'|\mathbf{x}) = P(\mathbf{l}',\pi_T=l'_{|\mathbf{l}'|}|\mathbf{x}) + P(\mathbf{l}',\pi_T=l'_{|\mathbf{l'}|-1}|\mathbf{x}) $$
+
+We can generalize $P(\mathbf{l}',\pi_T=l'_{|\mathbf{l}'|}|\mathbf{x})$
+and $P(\mathbf{l}',\pi_T=l'_{|\mathbf{l'}|-1}|\mathbf{x})$ to be
+
+$$ \alpha(t,s) = P(\mathbf{l'}_{1:s}, \pi_t=l'_s | \mathbf{x}) $$
+
+so
+
+$$ P(\mathbf{l}'|\mathbf{x}) = \alpha(T,|\mathbf{l}'|) + \alpha(T,|\mathbf{l}'|-1) $$
+
+
+Above time warping example also shows that $\pi_1$ could be mapped to
+either $l'_1$, the leading blank of $\mathbf{l}'$, or $l'_2$, the
+first element of $\mathbf{l}$.  So we have
+
+$$ \alpha(1,1) = y_{1,\_} $$
+$$ \alpha(1,2) = y_{1,l_1} $$
+$$ \alpha(1,s) = 0, \forall s>2 $$
+
+
+Here let us take an example.  Suppose that
+$\mathbf{l}'=\{\_,h,\_,e,\_\}$ and a $\mathbf{y}$ (which, for the
+simplicity, is illustrated as a sequence of subscripts).  It is
+reasonable to map $\pi_1$ to $l'_1$, the leading blank of
+$\mathbf{l}'$, if $\arg\max_k y_{1,k}=\text{``\_"}$:
+
+    123456789
+    |
+    |
+    _h_e_
+
+or to $l'_2=\text{``h"}$, if $\arg\max_k y_{1,k}=\text{``h"}$:
+
+    123456789
+    |
+	\
+    _h_e_
+
+Then we think a step further -- mapping $\pi_2$, or more generally,
+$\pi_s$.  Roughly, it is reasonable to map $\pi_t$ to
+
+1. where $\pi_{t-1}$ was mapped to, denoted by $l'_{s(t-1)}$,
+2. the element next to $l'_{s(t-1)}$, denoted by $l'_{s(t-1)+1}$, or
+3. $l'_{s(t-1)+2}$, if $l'_{s(t-1)+1}=\text{``\_"}$
+
+Among these, 3. is reasonable in case that we want to skip that blank
+$l'_{s(t-1)+1}=\text{``\_"}$.  An example is that when we want to map
+$\boldsymbol\pi=\{h,h,h,h,e,e,e\}$ to $\mathbf{l}'=\{\_,h,\_,e,\_\}$
+-- there should be no $\pi_t$, for any $t$, being mapped to any blank
+in $\mathbf{l}'$.
+
+    hhhheee
+    \|//|//
+     |  /
+    _h_e_
+
+But 3. is not reasonable when $l'_{s(t-1)+2}=l'_{s(t-1)}$.  In this
+case, we should not skip that blank.  For example, to recognize the
+word ``bee'', we have $\mathbf{l}'=\{\_,b,\_,e,\_,e,\_\}$.  And it is
+reasonable to map successive ``e''s in $\boldsymbol\pi$ to the two
+``e''s in $\boldsymbol\pi$ and skip the ``\_'' in between:
+
+    bbbeeeeee
+    \|||/|///
+     |/| |
+    _b_e_e_
+
+
+Summarizing above three cases, we get the following generalization
+rule for $\alpha(t,s)$:
+
+$$ \alpha(t,s) = \begin{cases}
+y_{t,l'_s} \sum_{i=s-1}^s \alpha(t-1,i) & \text{if $l'_s$=\_ or $l'_s=l'_{s-2}$} \\
+y_{t,l'_s} \sum_{i=s-2}^s \alpha(t-1,i) & \text{otherwise}
+\end{cases} $$
