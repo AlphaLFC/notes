@@ -1,6 +1,20 @@
-# Connectionist Temporal Classification
+# The Gritty Details of Connectionist Temporal Classification
 
 Yi Wang
+
+
+Connectionist Temporal Classification (CTC) is a technique that adds a
+specially designed top layer to Recurrent Neural Networks (RNN) to
+enable them to output a label or a blank for each frame of input
+sequences.  CTC make it possible to build speech recognition systems
+using a single RNN, other than the hybrid approach of HMM+DNN.
+
+This Markdown document contains LaTeX math equations.  To convert it
+into PDF files, we can use [`pandoc`](http://pandoc.org/):
+
+    pandoc CTC.md --latex-engine=xelatex -o CTC.pdf
+
+
 
 ## The Speech Recognition Problem
 
@@ -325,6 +339,7 @@ $$ \beta(t,s) = \begin{cases}
 \end{cases} $$
 
 
+
 ### The Search Space
 
 This general rule for $\alpha$ shows that, to compute $\alpha(t,s)$,
@@ -340,14 +355,15 @@ Every circle in this figure shows a possible state in the search
 space. These states are aligned in the grid of $t$ and $s$.  Arrows
 connect a state with its consequent states. These connected states are
 *possible* states, whereas the rest are *impossbile* and should have
-zero probability. The *impossible* area to the top-right of those
-connected states is identified as
+zero probability. We do not need to go into the *impossible* area to
+the top-right of those connected states when we compute $\alpha(t,s)$:
 
-$$ s<|\mathbf{l}'|-2(T-t)-1$$
+$$ \alpha(t,s) = 0, \forall s<|\mathbf{l}'|-2(T-t)-1$$
 
-and the impossible area to the left-bottom is
+And we do not need to go into the impossible area to the left-bottom
+when we compute $\beta(t,s)$:
 
-$$s>2t$$
+$$ \beta(t,s) = 0, \forall s>2t $$
 
 Actually, in order to bound the dynamic programming algorithm, we also need
 
