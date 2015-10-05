@@ -1,7 +1,7 @@
-# The Gritty Details of Connectionist Temporal Classification
-
-Yi Wang
-
+% Connectionist Temporal Classification: \
+The Gritty Details
+% Yi Wang
+% Oct 2015
 
 Connectionist Temporal Classification (CTC) is a technique that adds a
 specially designed top layer to Recurrent Neural Networks (RNN) to
