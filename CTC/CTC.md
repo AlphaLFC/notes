@@ -210,6 +210,9 @@ $P(\mathbf{l'} | \mathbf{x})$, which, is notablly equivalent to
 $P(\mathbf{l} | \mathbf{x})$, because $\mathbf{l}'$ is constructed to
 be unique for the given $\mathbf{l}$.
 
+
+### The Forward Algorithm
+
 The above time warping example shows that $\pi_T$ could be mapped to
 either $l'_{|\mathbf{l}'|}$, the padding blank of $\mathbf{l}'$, or
 $l'_{|\mathbf{l}'|-1}$, which, according to the construction rule of
@@ -298,13 +301,63 @@ y_{t,l'_s} \sum_{i=s-2}^s \alpha(t-1,i) & \text{otherwise}
 \end{cases} $$
 
 
-This general rule shows that, to compute $\alpha(t,s)$, we need
-$\alpha(t-1,s)$, $\alpha(t-1,s-1)$ and $\alpha(t-1,s-2)$.  Some of
-these values are obviously zero.  The following figure from Alex
-Graves' Ph.D. thesis helps us understand in particular which are
-zeros.
+
+### The Backward Algorithm
+
+Similar to the forward variable $\alpha(t,s)$, we can define the
+backward variable $\beta(t,s)$
+
+$$ \beta(t,s) = P(\mathbf{l}'_{s:|\mathbf{l}'|}, \pi_t=l'_s | \mathbf{x}) $$
+
+Because the time warping must map the $\pi_T$ to either
+$\mathbf{l}'_{|\mathbf{l}'|}$, the padding blank, with probability 1
+or $\mathbf{l}'_{|\mathbf{l}'-1|}$, the last element in $\mathbf{l}$,
+with probability 1, we have
+
+$$ \beta(T,|\mathbf{l}'|) = 1 $$
+$$ \beta(T,|\mathbf{l}'|-1) = 1 $$
+
+Similar to the generalization rule of the forward algorithm, we have
+
+$$ \beta(t,s) = \begin{cases}
+\sum_{i=s}^{s+1} \beta(t+1, i) y_{t,l'_i} & \text{if $l'_s=\_$ or $l'_{s+2}=l'_s$} \\
+\sum_{i=s}^{s+2} \beta(t+1, i) y_{t,l'_t} & \text{otherwise}
+\end{cases} $$
+
+
+### The Search Space
+
+This general rule for $\alpha$ shows that, to compute $\alpha(t,s)$,
+we need $\alpha(t-1,s)$, $\alpha(t-1,s-1)$ and $\alpha(t-1,s-2)$.
+Similarly, to compute $\beta(t,s)$, we need $\beta(t+1,s)$,
+$\beta(t+1,s+1)$, $\beta(t+1,s+2)$.  Some of these values are
+obviously zero.  The following figure (Figure 7.2 in Alex Graves'
+Ph.D. thesis) helps us understand which are zeros.
 
 ![The search space of the forward-backward algorithm](forward-backward-algorithm.pdf)
+
+Every circle in this figure shows a possible state in the search
+space. These states are aligned in the grid of $t$ and $s$.  Arrows
+connect a state with its consequent states. These connected states are
+*possible* states, whereas the rest are *impossbile* and should have
+zero probability. The *impossible* area to the top-right of those
+connected states is identified as
+
+$$ s<|\mathbf{l}'|-2(T-t)-1$$
+
+and the impossible area to the left-bottom is
+
+$$s>2t$$
+
+Actually, in order to bound the dynamic programming algorithm, we also need
+
+$$ \alpha(t,0) = 0, \forall t $$
+
+and
+
+$$ \beta(t, |\mathbf{l}'|+1) = 0, \forall t $$
+
+
 
 ## Quiz
 
