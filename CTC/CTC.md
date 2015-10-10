@@ -1,5 +1,5 @@
 % Connectionist Temporal Classification: \
-The Gritty Details
+A Tutorial with Gritty Details
 % Yi Wang
 % Oct 2015
 
@@ -381,3 +381,11 @@ $$ \beta(t, |\mathbf{l}'|+1) = 0, \forall t $$
    algorithm given $\mathbf{l}=\{b,e,e\}$, like Alex Graves
    illustrates the case of $\mathbf{l}=\{c,a,t\}$ with Figure 7.2 in
    his Ph.D. thesis.
+
+1. Suppose that we can motion data collected from a sensor placed on
+   our elbows. The data is a sequence of frames, and each frame
+   records the 3D position and velocity of the sensor.  Can we train a
+   CTC network that counts how many push-ups we are doing?
+
+1. How can we extend CTC into two dimensional case, and use this
+   extended version of CTC for object recognition in computer vision?
